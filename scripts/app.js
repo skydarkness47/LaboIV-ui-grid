@@ -37,5 +37,9 @@ angular
       url: '/modificar',
       templateUrl: 'views/modificar.html',
       controller:'ModificarCtrl'
+    }).state('ConfiguradoTP', {
+      url: '/ConfiguradoTP',
+      templateUrl: 'views/ConfiguradoTP.html',
+      controller:'ConfiguradoTP'
     })
   });
