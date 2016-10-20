@@ -10,6 +10,10 @@ angular
     $scope.gridOptions.columnDefs = columnDefs();
     // Activo la busqueda en todos los campos.
     $scope.gridOptions.enableFiltering = true;
+    $scope.MostrarData= function(datos){
+      console.info("Latitud",datos.latitud);
+      console.info("Longitud",datos.logitud);
+    }
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
 
@@ -23,7 +27,7 @@ angular
 
     function columnDefs () {
       return [
-        { field: 'id', name: '#', width: 100},
+        { field: 'id', name: '#', width: 50},
         
         { field: 'nombre', name: 'nombre',width: 100
           ,enableFiltering: false
@@ -43,19 +47,22 @@ angular
           //filtro de los datos
           ,cellFilter: 'sexoTP'
         },
-        { field: 'fechaNacimiento', name: 'fechaNacimiento', width: 200
+        { field: 'fechaNacimiento', name: 'fechaNacimiento', width: 150
           ,type: 'date'
           ,cellFilter: "date: 'dd-MM-yyyy'"
         },
-        { field: 'avatar',  name: 'avatar', cellTemplate:"<img width=\"50px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>",width: 100
+        { field: 'avatar',  name: 'avatar', cellTemplate:"<img width=\"50px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>",width: 70
           ,type: 'text'
           ,cellFilter: "date: 'dd-MM-yyyy'"
         },
-         { field: 'foto',  name: 'foto', cellTemplate:"<img width=\"30px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>",width: 100
+         { field: 'foto',  name: 'foto', cellTemplate:"<img width=\"30px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>",width: 70
           ,type: 'text'
         },
-        { field: 'sueldoPretendido',  name: 'sueldoPretendido',width: 200
+        { field: 'sueldoPretendido',  name: 'sueldoPretendido',width: 180 
           ,type: 'text'
+        },
+        { width: 200, cellTemplate:"<button ng-Click='grid.appScope.MostrarData(row.entity)'>MOSTRAR", name:"MostrarLongitud"
+         
         }
          
        
