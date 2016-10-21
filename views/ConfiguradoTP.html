@@ -1,4 +1,11 @@
 <div>
-  <div ui-grid="gridOptions" class="myGrid"></div>
-  <div id="map"></div>
+  <h3>{{titulo}}</h3>
+  <div ui-grid="gridOptions" class="myGrid"
+    ui-grid-pagination
+    ui-grid-resize-columns
+  ></div>
+  <ng-map center="[{{lat}},{{log}}]">
+<marker position="[{{lat}},{{log}}]" title="{{nombre}}" animation="Animation.DROP"></marker>
+
+</ng-map>
 </div>

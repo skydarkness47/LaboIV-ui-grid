@@ -10,10 +10,16 @@ angular
     $scope.gridOptions.columnDefs = columnDefs();
     // Activo la busqueda en todos los campos.
     $scope.gridOptions.enableFiltering = true;
+
     $scope.MostrarData= function(datos){
       console.info("Latitud",datos.latitud);
       console.info("Longitud",datos.logitud);
-    }
+      $scope.lat=datos.latitud;
+      $scope.lon=datos.logitud;
+      $scope.nombre=datos.nombre;
+
+};
+    
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
 
@@ -65,7 +71,8 @@ angular
          
         }
          
-       
+
+
       ];
     }
   })

@@ -6,8 +6,10 @@ angular
     'ui.grid.resizeColumns',
     'ui.grid.selection',
     'ui.grid.exporter',
-    'ui.grid.edit'
-  ])
+    'ui.grid.edit',
+    'ngMap'
+    ]
+    )
   .config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('simple');
