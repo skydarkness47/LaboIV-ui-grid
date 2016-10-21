@@ -5,7 +5,26 @@
     ui-grid-resize-columns
   ></div>
   <ng-map center="[{{lat}},{{log}}]">
-<marker position="[{{lat}},{{log}}]" title="{{nombre}}" animation="Animation.DROP"></marker>
+<marker position="[{{lat}},{{log}}]" map-type-id="{{nombre}}" animation="Animation.DROP"></marker>
 
 </ng-map>
+
+	<table >
+									<thead>
+										<tr>
+											<th>  Foto  </th>				
+											<th>  Nombre     </th>
+											
+										</tr> 
+									</thead>
+									<tr ng-repeat="amigo in ListadoAmigos" >
+
+										<td>{{amigo.nombre}}</td>
+										<td>{{amigo.apellido}}</td>
+										
+
+											
+									</tr>
+								
+								</table>
 </div>

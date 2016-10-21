@@ -19,6 +19,20 @@ angular
       $scope.nombre=datos.nombre;
 
 };
+
+   $scope.MostrarAmigos= function(datos){
+  
+    $scope.ListadoAmigos= datos.amigos;
+    console.info($scope.ListadoAmigos);
+};
+
+function ColumAmigos(datos)
+{
+  
+
+     
+  
+}
     
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
@@ -67,7 +81,9 @@ angular
         { field: 'sueldoPretendido',  name: 'sueldoPretendido',width: 180 
           ,type: 'text'
         },
-        { width: 200, cellTemplate:"<button ng-Click='grid.appScope.MostrarData(row.entity)'>MOSTRAR", name:"MostrarLongitud"
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.MostrarData(row.entity)'>MOSTRAR", name:"MostrarLongitud"
+         
+        } ,{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.ColumAmigos(row.entity)'>Mostrar Amigos", name:"MostrarAmigos"
          
         }
          
