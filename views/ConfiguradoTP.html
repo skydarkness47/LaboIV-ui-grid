@@ -4,27 +4,13 @@
     ui-grid-pagination
     ui-grid-resize-columns
   ></div>
-  <ng-map center="[{{lat}},{{log}}]">
-<marker position="[{{lat}},{{log}}]" map-type-id="{{nombre}}" animation="Animation.DROP"></marker>
-
-</ng-map>
-
-	<table >
-									<thead>
-										<tr>
-											<th>  Foto  </th>				
-											<th>  Nombre     </th>
-											
-										</tr> 
-									</thead>
-									<tr ng-repeat="amigo in ListadoAmigos" >
-
-										<td>{{amigo.nombre}}</td>
-										<td>{{amigo.apellido}}</td>
-										
-
-											
-									</tr>
-								
-								</table>
+  <div ng-if="map">
+    <ng-map center="[{{Lat}}, {{Log}}]" >
+      <marker icon="{{customIcon}}" position ="[{{Lat}}, {{Log}}]" title="{{Nombre}}" animation="Animation.DROP" ></marker>
+    </ng-map>
+  </div>
+  <div ng-if="friend" ui-grid="gridAmigos" class="myGrid"
+    ui-grid-pagination
+    ui-grid-resize-columns>
+  </div>
 </div>

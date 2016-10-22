@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .controller('ConfiguradoTP', function($scope, data, i18nService, uiGridConstants) {
+  .controller('ConfiguradoTP', function($scope, data, i18nService, uiGridConstants,NgMap) {
     $scope.titulo = "Configuracion Campos";
     // Objeto de configuracion de la grilla.
     $scope.gridOptions = {};
@@ -11,29 +11,85 @@ angular
     // Activo la busqueda en todos los campos.
     $scope.gridOptions.enableFiltering = true;
 
-    $scope.MostrarData= function(datos){
-      console.info("Latitud",datos.latitud);
-      console.info("Longitud",datos.logitud);
-      $scope.lat=datos.latitud;
-      $scope.lon=datos.logitud;
-      $scope.nombre=datos.nombre;
+    $scope.MostrarData= function(row){
+        console.info("Datos",row);
+      console.info("Longitud",row.logitud);
+      console.info("Latitud", row.latitud);
+      $scope.map = true;
+      $scope.Lat = parseFloat(row.latitud);
+      $scope.Log = parseFloat(row.logitud);
+      $scope.Nombre = row.nombre;
+      $scope.avatar=row.avatar;
+$scope.customIcon = {
+        "scaledSize": [32, 32],
+        "url":  $scope.avatar
+    };
 
-};
-
-   $scope.MostrarAmigos= function(datos){
-  
-    $scope.ListadoAmigos= datos.amigos;
-    console.info($scope.ListadoAmigos);
-};
-
-function ColumAmigos(datos)
-{
-  
-
-     
-  
-}
+      NgMap.getMap().then(function (map) {
+          //console.log(map.getBounds().toString());
+      });
     
+
+};
+
+   $scope.Amigos= function(data){
+  
+    $scope.friend = true;
+      $scope.Listado = data.amigos;
+      console.info($scope.Listado);
+      //$scope.titulo = "Amigos";
+      // Objeto de configuracion de la grilla.
+      $scope.gridAmigos = {};
+      $scope.gridAmigos.paginationPageSizes = [25, 50, 75];
+      // Configuracion de la paginacion
+      $scope.gridAmigos.paginationPageSize = 25;
+      $scope.gridAmigos.columnDefs = columAmigos();
+      // Activo la busqueda en todos los campos.
+      $scope.gridAmigos.enableFiltering = true;
+      // Configuracion del idioma.
+      i18nService.setCurrentLang('es');
+
+      $scope.gridAmigos.data = $scope.Listado;
+
+
+    $scope.MostrarData= function(row){
+      console.info("Latitud",row.latitud);
+      console.info("Longitud",row.logitud);
+      $scope.lat=row.latitud;
+      $scope.lon=row.logitud;
+      $scope.avatar=row.avatar;
+      $scope.nombre=row.nombre;
+           $scope.avatar=row.avatar;
+$scope.customIcon = {
+        "scaledSize": [150, 150],
+        "url":  $scope.avatar
+    };
+
+    }
+
+ $scope.Mapa=function (row){
+      console.info("Puto",row);
+      console.info("Longitud",row.logitud);
+      console.info("Latitud", row.latitud);
+      $scope.map = true;
+      $scope.Lat = parseFloat(row.latitud);
+      $scope.Log = parseFloat(row.logitud);
+     $scope.avatar=row.avatar;
+      $scope.Nombre = row.nombre;
+$scope.customIcon = {
+        "scaledSize": [150, 150],
+        "url":  $scope.avatar
+    };
+      NgMap.getMap().then(function (map) {
+          //console.log(map.getBounds().toString());
+      });
+}
+
+
+
+};
+
+
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
 
@@ -44,6 +100,26 @@ function ColumAmigos(datos)
     });
 
     console.log(uiGridConstants);
+
+  function columAmigos () {
+  return [
+        { field: 'id', name: '#', width: 55},
+        { field: 'nombre', name: 'nombre'
+          ,enableFiltering: false
+        },
+        { field: 'apellido', name: 'apellido'},
+      
+        
+        { field: 'fechaNacimiento', width: 200, name: 'fechaNacimiento'
+          ,type: 'date'
+          ,cellFilter: "date: 'dd-MM-yyyy'"
+        },
+        { field: 'avatar', name: 'avatar', cellTemplate:"<img width=\"50px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>" },
+        { field: 'foto', name: 'foto', cellTemplate:"<img width=\"15px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>" },
+        { cellTemplate:"<button ng-click='grid.appScope.Mapa(row.entity)'>Mostrar", name: "Mapa"}
+      ];
+    }
+
 
     function columnDefs () {
       return [
@@ -83,7 +159,7 @@ function ColumAmigos(datos)
         },
         { width: 100, cellTemplate:"<button ng-Click='grid.appScope.MostrarData(row.entity)'>MOSTRAR", name:"MostrarLongitud"
          
-        } ,{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.ColumAmigos(row.entity)'>Mostrar Amigos", name:"MostrarAmigos"
+        } ,{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.Amigos(row.entity)'>Mostrar Amigos", name:"MostrarAmigos"
          
         }
          
