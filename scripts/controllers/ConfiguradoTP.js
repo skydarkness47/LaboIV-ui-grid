@@ -11,6 +11,37 @@ angular
     // Activo la busqueda en todos los campos.
     $scope.gridOptions.enableFiltering = true;
 
+
+ $scope.GpsAmigos=function(row){
+   $scope.Lat = parseFloat(row.latitud);
+   $scope.Log = parseFloat(row.logitud);
+    $scope.avatar=row.avatar;
+   $scope.customIcon = {
+        "scaledSize": [32, 32],
+        "url":  $scope.avatar
+    };
+$scope.listado = row.amigos;
+$scope.listado.forEach(function(hola){
+hola.avatar={
+        "scaledSize": [32, 32],
+        "url":  hola.avatar
+    };
+
+
+});
+
+
+$scope.listadoAmigos = $scope.listado;
+console.info($scope.listadoAmigos);
+$scope.map=false;
+$scope.amigos=true;
+
+ NgMap.getMap().then(function (map) {
+          //console.log(map.getBounds().toString());
+      });
+
+}
+
     $scope.MostrarData= function(row){
         console.info("Datos",row);
       console.info("Longitud",row.logitud);
@@ -24,6 +55,8 @@ $scope.customIcon = {
         "scaledSize": [32, 32],
         "url":  $scope.avatar
     };
+
+    console.info($scope.customIcon);
 
       NgMap.getMap().then(function (map) {
           //console.log(map.getBounds().toString());
@@ -67,6 +100,8 @@ $scope.customIcon = {
 
     }
 
+
+
  $scope.Mapa=function (row){
       console.info("Puto",row);
       console.info("Longitud",row.logitud);
@@ -84,7 +119,6 @@ $scope.customIcon = {
           //console.log(map.getBounds().toString());
       });
 }
-
 
 
 };
@@ -160,6 +194,8 @@ $scope.customIcon = {
         { width: 100, cellTemplate:"<button ng-Click='grid.appScope.MostrarData(row.entity)'>MOSTRAR", name:"MostrarLongitud"
          
         } ,{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.Amigos(row.entity)'>Mostrar Amigos", name:"MostrarAmigos"
+         
+        },{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.GpsAmigos(row.entity)'>GPS Amigos", name:"GpsAmigos"
          
         }
          
