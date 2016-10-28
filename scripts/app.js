@@ -43,5 +43,12 @@ angular
       url: '/ConfiguradoTP',
       templateUrl: 'views/ConfiguradoTP.html',
       controller:'ConfiguradoTP'
+    }).state('ServicioTP', {
+      url: '/ServicioTP',
+      templateUrl: 'views/ServicioTP.html',
+      controller:'ServicioTP',
+      cache:true
     })
+
+
   });

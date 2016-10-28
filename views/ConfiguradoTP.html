@@ -12,6 +12,7 @@
 
  <div ng-if="amigos">
    <ng-map center="[{{Lat}}, {{Log}}]" >
+      
       <marker icon="{{customIcon}}" position ="[{{Lat}}, {{Log}}]" title="{{Nombre}}" animation="Animation.DROP" ></marker>
   <div ng-repeat="amigo in listadoAmigos">
       <marker  icon="{{amigo.avatar}}" position ="[{{amigo.latitud}}, {{amigo.longitud}}]"  animation="Animation.DROP" ></marker>

@@ -16,6 +16,7 @@ angular
    $scope.Lat = parseFloat(row.latitud);
    $scope.Log = parseFloat(row.logitud);
     $scope.avatar=row.avatar;
+    $scope.nombre = row.nombre;
    $scope.customIcon = {
         "scaledSize": [32, 32],
         "url":  $scope.avatar
