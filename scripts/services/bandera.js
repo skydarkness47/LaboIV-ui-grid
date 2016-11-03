@@ -1,9 +1,9 @@
 angular
   .module('app')
-  .service('Bandera', function ($http) {
+  .service('Bandera', function ($http, factoryRutas) {
      this.nombre = "supe";
      this.TraerSoloImagen =TraerSoloImagen;
-     var url ="http://www.egos27.somee.com/api/bandera";
+     var url = factoryRutas.ApiBanderas;
      function TraerSoloImagen(){
 
      }

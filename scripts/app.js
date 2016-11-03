@@ -49,6 +49,16 @@ angular
       controller:'ServicioTP',
       cache:true
     })
-
+.state('factory', {
+      url: '/factory',
+      templateUrl: 'views/config.html',
+      controller:'factoryCtrl',
+      cache:true
+    }).state('factoryConServicio', {
+      url: '/factoryConServicio',
+      templateUrl: 'views/config.html',
+      controller:'factoryConServicio',
+      cache:true
+    })
 
   });
